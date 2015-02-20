@@ -1,0 +1,18 @@
+﻿@model CGol.web.Controllers.NewGameModel
+<b>Test</b>
+
+<form action="/home/new" method="post">
+	<div>
+		<label for="Width">Width</label>
+		<input id="Width" name="Width" value="@Model.Width" />
+	</div>
+	<div>
+		<label for="Width">Height</label>
+		<input id="Height" name="Height" value="@Model.Height" />
+	</div>
+	<div>
+		<label for="Width">Fill Factor</label>
+		<input id="FillFactor" name="FillFactor" value="@Model.FillFactor" />
+	</div>
+	<input type="submit" />
+</form>

@@ -1,0 +1,86 @@
+﻿using System;
+using System.Security.Cryptography;
+using System.Web.Mvc;
+using CGol.lib;
+using Ninject;
+
+namespace CGol.web.Controllers
+{
+	public class HomeController : Controller
+	{
+		[Inject]
+		public ICGolGameCreator Creator { get; set; }
+
+		// GET: Home
+		public ActionResult Index()
+		{
+			var random = new Random();
+			var randomFillFactor = random.NextDouble();
+
+			var model = new NewGameModel
+			{
+				Width = 10,
+				Height = 10,
+				FillFactor = randomFillFactor
+			};
+
+			return View(model);
+		}
+
+		[HttpPost]
+		public ActionResult New(NewGameModel model)
+		{
+			Creator.Width = model.Width;
+			Creator.Height = model.Height;
+			Creator.FillFactor = model.FillFactor;
+			var rawGame = Creator.Execute();
+			Session["GAME"] = rawGame;
+
+			var game = new GameModel(rawGame) {FillFactor = model.FillFactor};
+			return View(game);
+		}
+
+		[HttpGet]
+		public ActionResult Tick()
+		{
+			var rawGame = (ICGolGame) Session["GAME"];
+			rawGame.Tick();
+			Session["GAME"] = rawGame;
+
+			var game = new GameModel(rawGame);
+
+			return View("New", game);
+		}
+	}
+
+	public class GameModel
+	{
+		public double FillFactor { get; set; }
+		public int Height { get; set; }
+		public int Width { get; set; }
+		public bool[,] Board { get; private set; }
+
+		public GameModel(ICGolGame model)
+		{
+			Height = model.Height;
+			Width = model.Width;
+
+			Board = new bool[Width, Height];
+
+			for (var i = 0; i < Width; i++)
+			{
+				for (var j = 0; j < Height; j++)
+				{
+					Board[i, j] = model.IsAliveAt(i, j);
+				}
+			}
+		}
+	}
+
+	public class NewGameModel
+	{
+		public int Width { get; set; }
+		public int Height { get; set; }
+		public double FillFactor { get; set; }
+	}
+}

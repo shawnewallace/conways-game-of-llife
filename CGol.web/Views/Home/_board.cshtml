@@ -1,0 +1,21 @@
+﻿@model CGol.web.Controllers.GameModel
+
+<table>
+	@for (var i = 0; i < Model.Height; i++)
+	{
+		<tr>
+			@for (var j = 0; j < Model.Width; j++)
+			{
+
+				if (Model.Board[i, j])
+				{
+					<td nowrap="nowrap" style="background-color: green;">&nbsp;</td>
+				}
+				else
+				{
+					<td nowrap="nowrap">&nbsp;</td>
+				}
+			}
+		</tr>
+	}
+</table>
