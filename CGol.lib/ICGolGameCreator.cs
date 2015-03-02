@@ -15,6 +15,7 @@ namespace CGol.lib
 		public int Width { get; set; }
 		public int Height { get; set; }
 		public double FillFactor { get; set; }
+
 		public ICGolGame Execute()
 		{
 			var game = new CGolGame

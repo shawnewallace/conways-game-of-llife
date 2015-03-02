@@ -58,12 +58,17 @@ namespace CGol.web.Controllers
 		public double FillFactor { get; set; }
 		public int Height { get; set; }
 		public int Width { get; set; }
-		public bool[,] Board { get; private set; }
+		public bool[,] Board { get; set; }
+
+		public GameModel()
+		{
+		}
 
 		public GameModel(ICGolGame model)
 		{
 			Height = model.Height;
 			Width = model.Width;
+			FillFactor = model.FillFactor;
 
 			Board = new bool[Width, Height];
 
@@ -74,6 +79,22 @@ namespace CGol.web.Controllers
 					Board[i, j] = model.IsAliveAt(i, j);
 				}
 			}
+		}
+
+		public ICGolGame ApplyTo(ICGolGame domainGame)
+		{
+			domainGame.FillFactor = FillFactor;
+			domainGame.Board = new Cell[Width,Height];
+
+			for (var i = 0; i < Width; i++)
+			{
+				for (var j = 0; j < Height; j++)
+				{
+					domainGame.Board[i, j] = new Cell(){Alive = Board[i,j]};
+				}
+			}
+
+			return domainGame;
 		}
 	}
 

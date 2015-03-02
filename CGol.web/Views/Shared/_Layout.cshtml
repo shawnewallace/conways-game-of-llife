@@ -1,15 +1,31 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>@ViewBag.Title</title>
-	</head>
-	<body>
-		<div id="header"></div>
-		<div id="body">@RenderBody()</div>
-		<footer></footer>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<style>
+		table {
+			/*width: 30px;*/
+			border: 1px solid black;
+		}
 
-		@RenderSection("scripts", required: false)
-	</body>
+			table td > div {
+				overflow: hidden;
+				height: 5px;
+				width: 5px;
+			}
+
+			.alive {
+				background-color: green;
+			}
+	</style>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="body">@RenderBody()</div>
+	<footer></footer>
+
+	@RenderSection("scripts", required: false)
+</body>
 </html>
