@@ -47,7 +47,7 @@ namespace CGol.web.Controllers
 			rawGame.Tick();
 			Session["GAME"] = rawGame;
 
-			var game = new GameModel(rawGame);
+			var game     = new GameModel(rawGame);
 
 			return View("New", game);
 		}
