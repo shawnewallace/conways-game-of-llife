@@ -1,21 +1,20 @@
 ﻿@model CGol.web.Controllers.GameModel
 
 <table>
-	@for (var i = 0; i < Model.Height; i++)
+	@for (var y = 0; y < Model.Height; y++)
 	{
 		<tr>
-			@for (var j = 0; j < Model.Width; j++)
+			@for (var x = 0; x < Model.Width; x++)
 			{
-
-				if (Model.Board[i, j])
+				if (Model.Board[x, y])
 				{
-					<td class="alive">
+					<td class="cell alive" data-x="@x" data-y="@y">
 						<div></div>
 					</td>
 				}
 				else
 				{
-					<td class="dead">
+					<td class="cell dead" data-x="@x" data-y="@y">
 						<div></div>
 					</td>
 				}
@@ -23,3 +22,4 @@
 		</tr>
 	}
 </table>
+

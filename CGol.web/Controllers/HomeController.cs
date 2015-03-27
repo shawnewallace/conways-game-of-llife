@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using CGol.lib;
+using Newtonsoft.Json;
 using Ninject;
 
 namespace CGol.web.Controllers
@@ -95,6 +97,14 @@ namespace CGol.web.Controllers
 			}
 
 			return domainGame;
+		}
+
+		public string JsonBoard()
+		{
+			//var json = new JavaScriptSerializer().Serialize(Board);
+			var json = JsonConvert.SerializeObject(this);
+
+			return json;
 		}
 	}
 
