@@ -9,8 +9,33 @@
 
 <a href="/home/tick">Tick</a>&nbsp;<a href="/home/index">Start Over</a>
 
-<script type="text/javascript">
+@*<script type="text/javascript">
 	window.setInterval(function() {
 		window.location.replace('/home/tick');
 	}, 1000);
-</script>
+</script>*@
+
+@section scripts
+{
+	<script type="text/javascript">
+		var board = @Html.Raw(Model.JsonBoard());
+
+		$(document).ready(function() {
+			$(".cell").click(function () {
+				var x = $(this).data("x");
+				var y = $(this).data("y");
+
+				if ($(this).hasClass("alive")) {
+					$(this).removeClass("alive");
+					$(this).addClass("dead");
+					board.Board[x, y] = false;
+				} else {
+					$(this).removeClass("dead");
+					$(this).addClass("alive");
+					board.Board[x, y] = true;
+				}
+
+			});
+		});
+	</script>
+}
