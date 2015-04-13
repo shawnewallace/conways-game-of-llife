@@ -1,4 +1,4 @@
-﻿@model CGol.web.Controllers.GameModel
+﻿@model CGol.web.Models.GameModel
 
 <div><b>Width:</b>@Model.Width</div>
 <div><b>Height:</b>@Model.Height</div>
@@ -8,12 +8,6 @@
 }
 
 <a href="/home/tick">Tick</a>&nbsp;<a href="/home/index">Start Over</a>
-
-@*<script type="text/javascript">
-	window.setInterval(function() {
-		window.location.replace('/home/tick');
-	}, 1000);
-</script>*@
 
 @section scripts
 {
