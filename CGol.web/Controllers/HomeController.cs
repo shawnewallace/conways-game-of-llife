@@ -34,8 +34,8 @@ namespace CGol.web.Controllers
 	  [System.Web.Mvc.HttpPost]
 	  public ActionResult Shawn()
 	  {
-	    var height = 25;
-	    var width = 25;
+	    const int height = 10;
+	    const int width = 25;
 
 	    var board = new bool[width, height];
 
@@ -54,7 +54,7 @@ namespace CGol.web.Controllers
 	    {
         Height = height,
         Width = width,
-        FillFactor = 0,
+        FillFactor = 0.0,
         Board = board
 	    };
 
