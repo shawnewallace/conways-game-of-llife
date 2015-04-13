@@ -29,7 +29,37 @@ namespace CGol.web.Controllers
 			return View(model);
 		}
 
-		[HttpPost]
+	  [HttpPost]
+	  public ActionResult Shawn()
+	  {
+	    var height = 25;
+	    var width = 25;
+
+	    var board = new bool[width, height];
+
+	    for (var i = 0; i < width; i++)
+	    {
+	      for (var j = 0; j < height; j++)
+	      {
+	        board[i, j] = false;
+	      }
+	    }
+
+	    board[0, 0] = true;
+	    board[24, 24] = true;
+
+	    var model = new GameModel
+	    {
+        Height = height,
+        Width = width,
+        FillFactor = 0,
+        Board = board
+	    };
+
+	    return View("New", model);
+	  }
+
+	  [HttpPost]
 		public ActionResult New(NewGameModel model)
 		{
 			Creator.Width = model.Width;
@@ -39,7 +69,7 @@ namespace CGol.web.Controllers
 			Session["GAME"] = rawGame;
 
 			var game = new GameModel(rawGame) {FillFactor = model.FillFactor};
-			return View(game);
+			return View("New", game);
 		}
 
 		[HttpGet]
