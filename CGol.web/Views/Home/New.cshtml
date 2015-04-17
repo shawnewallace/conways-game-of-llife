@@ -9,13 +9,25 @@
 
 <a href="/home/tick">Tick</a>&nbsp;<a href="/home/index">Start Over</a>
 
+<a href="#" id="service-tick">Tick Using Service</a>
+
+<hr/>
+
+<div id="game-board">
+
+</div>
+
 @section scripts
 {
 	<script type="text/javascript">
 		var board = @Html.Raw(Model.JsonBoard());
 
 		$(document).ready(function() {
-			$(".cell").click(function () {
+			$("#service-tick").click(function() {
+				tick();
+			});
+
+			$(".cell").click(function() {
 				var x = $(this).data("x");
 				var y = $(this).data("y");
 
@@ -31,5 +43,50 @@
 
 			});
 		});
+
+		var tick = function() {
+			var URL = "/api/Game";
+			alert(JSON.stringify(board));
+
+			$.ajax({
+				url: URL,
+				type: "PUT",
+				data: JSON.stringify(board),
+				contentType: "application/json",
+				success: function(result) {
+					board = result;
+					drawBoard();
+					//alert(JSON.stringify(result));
+					//$("#game-board").text(JSON.stringify(result));
+				}
+			});
+		};
+
+		var drawBoard = function() {
+			var height = board.height;
+			var width = board.width;
+
+			var boardTable = "<table>";
+
+			for (var x = 0; x < width; x++) {
+				boardTable = boardTable + "<tr>";
+				for (var y = 0; y < height; y++) {
+					if (board.board[x, y] == true) {
+						boardTable = boardTable + "<td class='cell alive'><div></div>";
+					} else {
+						boardTable = boardTable + "<td class='cell dead'><div></div>";
+					}
+					boardTable = boardTable + "</td>";
+				}
+				boardTable = boardTable + "</tr>";
+			}
+
+			boardTable = boardTable + "</table>";
+
+			$("#game-board").html(boardTable);
+
+			alert(height);
+			alert(width);
+		};
 	</script>
 }

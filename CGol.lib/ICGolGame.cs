@@ -13,8 +13,8 @@
 	public class CGolGame : ICGolGame
 	{
 		public double FillFactor { get; set; }
-		public int Height { get { return Board.GetLength(0); } }
-		public int Width { get { return Board.GetLength(1); } }
+		public int Height { get { return Board.GetLength(1); } }
+		public int Width { get { return Board.GetLength(0); } }
 		public Cell[,] Board { get; set; }
 
 		public bool IsAliveAt(int x, int y)

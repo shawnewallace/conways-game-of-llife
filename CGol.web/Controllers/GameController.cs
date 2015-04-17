@@ -34,6 +34,7 @@ namespace CGol.web.Controllers
 		}
 
 		// PUT: api/Game/5
+		[HttpPut]
 		public OkNegotiatedContentResult<GameModel> Put([FromBody] GameModel game)
 		{
 			ICGolGame domainGame = new CGolGame();
