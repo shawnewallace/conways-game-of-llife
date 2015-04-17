@@ -10,88 +10,101 @@ using Ninject;
 
 namespace CGol.web.Controllers
 {
-	public class HomeController : Controller
-	{
-		[Inject]
-		public ICGolGameCreator Creator { get; set; }
+  public class HomeController : Controller
+  {
+    [Inject]
+    public ICGolGameCreator Creator { get; set; }
 
-		// GET: Home
-		public ActionResult Index()
-		{
-			var random = new Random();
-			var randomFillFactor = random.NextDouble();
+    [System.Web.Mvc.HttpPost]
+    public ActionResult Shawn()
+    {
+      const int height = 10;
+      const int width = 25;
 
-			var model = new NewGameModel
-			{
-				Width = 10,
-				Height = 10,
-				FillFactor = randomFillFactor
-			};
+      var board = new bool[width, height];
 
-			return View(model);
-		}
+      for (var i = 0; i < width; i++)
+      {
+        for (var j = 0; j < height; j++)
+        {
+          board[i, j] = false;
+        }
+      }
 
-	  [System.Web.Mvc.HttpPost]
-	  public ActionResult Shawn()
-	  {
-	    const int height = 10;
-	    const int width = 25;
+      // S
+      board[1, 1] = true;
+      board[2, 1] = true;
+      board[3, 1] = true;
+      board[4, 1] = true;
 
-	    var board = new bool[width, height];
+      board[1, 4] = true;
+      board[2, 4] = true;
+      board[3, 4] = true;
+      board[4, 4] = true;
 
-	    for (var i = 0; i < width; i++)
-	    {
-	      for (var j = 0; j < height; j++)
-	      {
-	        board[i, j] = false;
-	      }
-	    }
+      board[1, 7] = true;
+      board[2, 7] = true;
+      board[3, 7] = true;
+      board[4, 7] = true;
 
-	    board[0, 0] = true;
-	    board[24, 24] = true;
-
-	    var model = new GameModel
-	    {
-        Height = height,
-        Width = width,
-        FillFactor = 0.0,
+      var model = new GameModel
+      {
+        Height = height, 
+        Width = width, 
+        FillFactor = 0.0, 
         Board = board
-	    };
+      };
 
-	    return View("New", model);
-	  }
+      return View("New", model);
+    }
 
-		[System.Web.Mvc.HttpPost]
-		public ActionResult New(NewGameModel model)
-		{
-			Creator.Width = model.Width;
-			Creator.Height = model.Height;
-			Creator.FillFactor = model.FillFactor;
-			var rawGame = Creator.Execute();
-			Session["GAME"] = rawGame;
+    // GET: Home
+    public ActionResult Index()
+    {
+      var random = new Random();
+      var randomFillFactor = random.NextDouble();
 
-			var game = new GameModel(rawGame) {FillFactor = model.FillFactor};
-			return View("New", game);
-		}
+      var model = new NewGameModel
+      {
+        Width = 10,
+        Height = 10,
+        FillFactor = randomFillFactor
+      };
 
-		[System.Web.Mvc.HttpGet]
-		public ActionResult Tick()
-		{
-			var rawGame = (ICGolGame) Session["GAME"];
-			rawGame.Tick();
-			Session["GAME"] = rawGame;
+      return View(model);
+    }
 
-			var game     = new GameModel(rawGame);
+    [System.Web.Mvc.HttpPost]
+    public ActionResult New(NewGameModel model)
+    {
+      Creator.Width = model.Width;
+      Creator.Height = model.Height;
+      Creator.FillFactor = model.FillFactor;
+      var rawGame = Creator.Execute();
+      Session["GAME"] = rawGame;
 
-			return View("New", game);
-		}
-	}
+      var game = new GameModel(rawGame) { FillFactor = model.FillFactor };
+      return View("New", game);
+    }
 
-	public class NewGameModel
-	{
-		public int Width { get; set; }
-		public int Height { get; set; }
-		[Key]
-		public double FillFactor { get; set; }
-	}
+    [System.Web.Mvc.HttpGet]
+    public ActionResult Tick()
+    {
+      var rawGame = (ICGolGame)Session["GAME"];
+      rawGame.Tick();
+      Session["GAME"] = rawGame;
+
+      var game = new GameModel(rawGame);
+
+      return View("New", game);
+    }
+  }
+
+  public class NewGameModel
+  {
+    public int Width { get; set; }
+    public int Height { get; set; }
+    [Key]
+    public double FillFactor { get; set; }
+  }
 }
