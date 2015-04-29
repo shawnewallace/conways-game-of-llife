@@ -1,25 +1,159 @@
 ﻿@model CGol.web.Controllers.NewGameModel
 <b>Test</b>
 
-<form action="/home/new" method="post">
+<div id="board-parameters">
 	<div>
-		<label for="Width">Width</label>
-		<input id="Width" name="Width" value="@Model.Width" />
+		<label for="width">Width</label>
+		<input id="width" name="width" value="10"/>
 	</div>
 	<div>
-		<label for="Width">Height</label>
-		<input id="Height" name="Height" value="@Model.Height" />
+		<label for="height">Height</label>
+		<input id="height" name="height" value="10"/>
 	</div>
 	<div>
-		<label for="Width">Fill Factor</label>
-		<input id="FillFactor" name="FillFactor" value="@Model.FillFactor" />
+		<label for="fill-factor">Fill Factor</label>
+		<input id="fill-factor" name="fill-factor" value=".5"/>
 	</div>
-	<input type="submit" />
-</form>
-<hr/>
-<form action="/home/shawn" method="POST">
-	<input type="submit" value="Start with Shawn Board"/>
-</form>
+	<select id="initial-state">
+		<option value="0">Random Board</option>
+		<option value="1">Blank Board</option>
+	</select>
+	<button id="new-board" name="new-board" type="button" class="btn btn-primary" value="New Board">Create New Game</button>
+</div>
 
-<hr/>
+<div id="game-board-actions">
+	<input type="checkbox" id="toggle-auto-refresh"/> Auto Tick
+	<a href="#" id="service-tick">Tick</a>&nbsp;
+	<a href="#" id="reset-game-board">Start Over</a>&nbsp;
+</div>
 
+<div id="game-board"></div>
+
+
+@section scripts
+{
+	<script type="text/javascript">
+		var board = "";
+		var reloading;
+
+		$(document).ready(function() {
+			$("#service-tick").click(function() {
+				tick();
+			});
+
+			$("#reset-game-board").click(function() {
+				reset();
+			});
+
+			$("#new-board").click(function() {
+				newBoard();
+			});
+
+			$("#toggle-auto-refresh").change(function() {
+				toggleRefresh($(this));
+			});
+
+			$(document).on("click", ".cell", function() {
+				var x = $(this).data("x");
+				var y = $(this).data("y");
+
+				if ($(this).hasClass("alive")) {
+					$(this).removeClass("alive");
+					$(this).addClass("dead");
+					board.board[x][y] = false;
+				} else {
+					$(this).removeClass("dead");
+					$(this).addClass("alive");
+					board.board[x][y] = true;
+				}
+			});
+		});
+
+		var toggleRefresh = function(checkbox)
+		{
+			var checked = checkbox.is(":checked");
+
+			if (checked) {
+				reloading = setInterval("tick();", 1000);
+			} else {
+				clearInterval(reloading);
+			}
+		}
+
+		var reset = function() {
+			$("#game-board").html("");
+			$("#width").val(10);
+			$("#height").val(10);
+			$("#fill-factor").val(.5);
+		};
+
+		var newBoard = function() {
+			var URL = "/api/Game";
+
+			var width = $("#width").val();
+			var height = $("#height").val();
+			var fillFactor = $("#fill-factor").val();
+			var initialState = $("#initial-state").val();
+
+			if (initialState === "1") {
+				fillFactor = 0;
+			}
+
+			var data = {
+				"width": width,
+				"height": height,
+				"fillfactor": fillFactor
+			};
+
+			$.ajax({
+				url: URL,
+				type: "POST",
+				data: JSON.stringify(data),
+				contentType: "application/json",
+				success: function(result) {
+					board = result;
+					drawBoard();
+				}
+			});
+		};
+
+		var tick = function() {
+			var URL = "/api/Game";
+
+			$.ajax({
+				url: URL,
+				type: "PUT",
+				data: JSON.stringify(board),
+				contentType: "application/json",
+				success: function(result) {
+					board = result;
+					drawBoard();
+				}
+			});
+		};
+
+		var drawBoard = function() {
+			var height = board.height;
+			var width = board.width;
+
+			var boardTable = "<table>";
+
+			for (var y = 0; y < height; y++) {
+				boardTable = boardTable + "<tr>";
+				for (var x = 0; x < width; x++) {
+					if (board.board[x][y] == true) {
+						boardTable = boardTable + "<td class='cell alive' data-x='" + x + "' data-y='" + y + "'><div></div>";
+					} else {
+						boardTable = boardTable + "<td class='cell dead' data-x='" + x + "' data-y='" + y + "'><div></div>";
+					}
+					boardTable = boardTable + "</td>";
+				}
+				boardTable = boardTable + "</tr>";
+			}
+
+			boardTable = boardTable + "</table>";
+
+			$("#game-board").html(boardTable);
+		};
+	</script>
+}

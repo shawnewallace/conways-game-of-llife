@@ -22,6 +22,7 @@ namespace CGol.web.Controllers
 
 
 		// POST: api/Game
+		[HttpPost]
 		public OkNegotiatedContentResult<GameModel> Post([FromBody] NewGameModel model)
 		{
 			Creator.Width = model.Width;
