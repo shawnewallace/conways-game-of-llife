@@ -12,3 +12,8 @@ notifications:
   on_build_status_changed: true
 before_build:
   - nuget restore
+deploy:
+  provider: Environment
+  name: dev
+  on:
+    branch: master
