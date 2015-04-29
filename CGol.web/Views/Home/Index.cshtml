@@ -25,6 +25,8 @@
 	<input type="checkbox" id="toggle-auto-refresh"/> Auto Tick
 	<a href="#" id="service-tick">Tick</a>&nbsp;
 	<a href="#" id="reset-game-board">Start Over</a>&nbsp;
+	<br/>
+	<span>Tick Count:&nbsp;&nbsp;</span><span id="tickCount"></span>
 </div>
 
 <div id="game-board"></div>
@@ -35,6 +37,7 @@
 	<script type="text/javascript">
 		var board = "";
 		var reloading;
+		var tickCount = 0;
 
 		$(document).ready(function() {
 			$("#service-tick").click(function() {
@@ -85,9 +88,11 @@
 			$("#width").val(10);
 			$("#height").val(10);
 			$("#fill-factor").val(.5);
+			$("#tickCount").text("");
+			tickCount = 0;
 		};
 
-		var newBoard = function() {
+		var newBoard = function () {
 			var URL = "/api/Game";
 
 			var width = $("#width").val();
@@ -110,7 +115,8 @@
 				type: "POST",
 				data: JSON.stringify(data),
 				contentType: "application/json",
-				success: function(result) {
+				success: function (result) {
+					tickCount = 0;
 					board = result;
 					drawBoard();
 				}
@@ -125,7 +131,8 @@
 				type: "PUT",
 				data: JSON.stringify(board),
 				contentType: "application/json",
-				success: function(result) {
+				success: function (result) {
+					tickCount = tickCount + 1;
 					board = result;
 					drawBoard();
 				}
@@ -153,6 +160,7 @@
 
 			boardTable = boardTable + "</table>";
 
+			$("#tickCount").text(tickCount);
 			$("#game-board").html(boardTable);
 		};
 	</script>
