@@ -1,6 +1,7 @@
 version: 1.0.{build}
 build:
-  verbosity: minimal
+  verbosity: normal
+  publish_wap: true
 notifications:
 - provider: Email
   to:
