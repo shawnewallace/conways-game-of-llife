@@ -46,7 +46,6 @@
 
 		var tick = function() {
 			var URL = "/api/Game";
-			//alert(JSON.stringify(board));
 
 			$.ajax({
 				url: URL,
@@ -56,8 +55,6 @@
 				success: function(result) {
 					board = result;
 					drawBoard();
-					//alert(JSON.stringify(result));
-					//$("#game-board").text(JSON.stringify(result));
 				}
 			});
 		};
@@ -81,25 +78,9 @@
 				boardTable = boardTable + "</tr>";
 			}
 
-			//for (var x = 0; x < width; x++) {
-			//	boardTable = boardTable + "<tr>";
-			//	for (var y = 0; y < height; y++) {
-			//		if (board.board[x, y] == true) {
-			//			boardTable = boardTable + "<td class='cell alive'><div></div>";
-			//		} else {
-			//			boardTable = boardTable + "<td class='cell dead'><div></div>";
-			//		}
-			//		boardTable = boardTable + "</td>";
-			//	}
-			//	boardTable = boardTable + "</tr>";
-			//}
-
 			boardTable = boardTable + "</table>";
 
 			$("#game-board").html(boardTable);
-
-			//alert(height);
-			//alert(width);
 		};
 	</script>
 }
