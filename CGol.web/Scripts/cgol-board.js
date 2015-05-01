@@ -1,6 +1,7 @@
 ﻿var board = "";
 var reloading;
 var tickCount = 0;
+var isMouseDown = false;
 
 $(document).ready(function () {
 	$("#service-tick").click(function () {
@@ -19,21 +20,49 @@ $(document).ready(function () {
 		toggleRefresh($(this));
 	});
 
-	$(document).on("click", ".cell", function () {
-		var x = $(this).data("x");
-		var y = $(this).data("y");
+	$("body").mousedown(function() {
+		isMouseDown = true;
+	})
+	.mouseup(function() {
+		isMouseDown = false;
+	});
 
-		if ($(this).hasClass("alive")) {
-			$(this).removeClass("alive");
-			$(this).addClass("dead");
-			board.board[x][y] = false;
-		} else {
-			$(this).removeClass("dead");
-			$(this).addClass("alive");
-			board.board[x][y] = true;
+	$(document).on("mouseenter", ".cell", function() {
+		if (isMouseDown) {
+			makeCellAlive($(this));
 		}
 	});
+
+	$(document).on("click", ".cell", function () {
+		toggleAlive($(this));
+	});
 });
+
+var toggleAlive = function(cell) {
+	if (cell.hasClass("alive")) {
+		makeCellDead(cell);
+	} else {
+		makeCellAlive(cell);
+	}
+};
+
+var makeCellAlive = function (cell) {
+	var x = cell.data("x");
+	var y = cell.data("y");
+
+	cell.removeClass("dead");
+	cell.addClass("alive");
+	board.board[x][y] = true;
+};
+
+var makeCellDead = function (cell) {
+	var x = cell.data("x");
+	var y = cell.data("y");
+
+	cell.removeClass("alive");
+	cell.addClass("dead");
+	board.board[x][y] = false;
+};
 
 var toggleRefresh = function (checkbox) {
 	var checked = checkbox.is(":checked");

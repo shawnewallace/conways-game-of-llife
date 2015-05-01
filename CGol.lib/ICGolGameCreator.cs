@@ -6,7 +6,8 @@ namespace CGol.lib
 	{
 		Random,
 		Blank,
-		Symmetric
+		Symmetric,
+		Checkerboard
 	}
 
 	public interface ICGolGameCreator
@@ -35,9 +36,41 @@ namespace CGol.lib
 					return BlankBoard();
 				case BoardGenerator.Symmetric:
 					return SymmetricBoard();
+				case BoardGenerator.Checkerboard:
+					return Checkerboard();
 			}
 
 			throw new Exception("No idea");
+		}
+
+		private ICGolGame Checkerboard()
+		{
+			//board must be square and dimensions must be even
+			var length = Width;
+			if (Width > Height) length = Width;
+			if (Height > Width) length = Height;
+
+			if (length % 2 != 0) length++;
+
+			Width = length;
+			Height = length;
+
+			var game = InitializeGame();
+			var initialState = true;
+
+			for (var i = 0; i < Width; i++)
+			{
+				var nextState = initialState;
+				for (var j = 0; j < Height; j++)
+				{
+					game.Board[i, j] = new Cell { Alive = nextState };
+					nextState = !nextState;
+				}
+
+				initialState = !initialState;
+			}
+
+			return game;
 		}
 
 		private ICGolGame SymmetricBoard()
@@ -50,9 +83,9 @@ namespace CGol.lib
 
 			var board = InitializeGame();
 
-			var centerX = (int) Math.Floor((decimal) (Width / 2)) - 1;
-			var centerY = (int) Math.Floor((decimal) (Width / 2)) - 1;
-			
+			var centerX = (int)Math.Floor((decimal)(Width / 2)) - 1;
+			var centerY = (int)Math.Floor((decimal)(Width / 2)) - 1;
+
 			board.Board[centerX, centerY].Alive = true;
 			board.Board[centerX + 1, centerY].Alive = true;
 			board.Board[centerX, centerY + 1].Alive = true;
