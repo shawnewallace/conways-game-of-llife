@@ -7,7 +7,8 @@ namespace CGol.lib
 		Random,
 		Blank,
 		Symmetric,
-		Checkerboard
+		Checkerboard,
+		Gosper
 	}
 
 	public interface ICGolGameCreator
@@ -38,9 +39,67 @@ namespace CGol.lib
 					return SymmetricBoard();
 				case BoardGenerator.Checkerboard:
 					return Checkerboard();
+				case BoardGenerator.Gosper:
+					return GospersGlidingGun();
 			}
 
 			throw new Exception("No idea");
+		}
+
+		private ICGolGame GospersGlidingGun()
+		{
+			SetMinDimensions(40, 11);
+			var game = InitializeGame();
+
+			//left square
+			game.Board[1, 5].Alive = true;
+			game.Board[2, 5].Alive = true;
+			game.Board[1, 6].Alive = true;
+			game.Board[2, 6].Alive = true;
+
+			//left node
+			game = DrawVerticalLine(game, 11, 5, 7);
+			game.Board[12, 4].Alive = true;
+			game.Board[12, 8].Alive = true;
+
+			game.Board[13, 3].Alive = true;
+			game.Board[14, 3].Alive = true;
+			game.Board[13, 9].Alive = true;
+			game.Board[14, 9].Alive = true;
+
+			game.Board[15, 6].Alive = true;
+
+			game.Board[16, 4].Alive = true;
+			game.Board[16, 8].Alive = true;
+
+			game = DrawVerticalLine(game, 17, 5, 7);
+
+			game.Board[18, 6].Alive = true;
+
+			//right node
+			game = DrawVerticalLine(game, 21, 3, 5);
+			game = DrawVerticalLine(game, 22, 3, 5);
+
+			game.Board[23, 2].Alive = true;
+			game.Board[23, 6].Alive = true;
+
+			game.Board[25, 1].Alive = true;
+			game.Board[25, 2].Alive = true;
+
+			game.Board[25, 6].Alive = true;
+			game.Board[25, 7].Alive = true;
+
+			//right square
+			//35
+			game.Board[35, 3].Alive = true;
+			game.Board[36, 3].Alive = true;
+			game.Board[35, 4].Alive = true;
+			game.Board[36, 4].Alive = true;
+			
+
+
+
+			return game;
 		}
 
 		private ICGolGame Checkerboard()
@@ -75,11 +134,7 @@ namespace CGol.lib
 
 		private ICGolGame SymmetricBoard()
 		{
-			const int minWidth = 20;
-			const int minHeight = 20;
-
-			if (Width < minWidth) Width = minWidth;
-			if (Height < minHeight) Height = minHeight;
+			SetMinDimensions(20, 20);
 
 			var board = InitializeGame();
 
@@ -160,6 +215,12 @@ namespace CGol.lib
 			}
 
 			return game;
+		}
+
+		private void SetMinDimensions(int minWidth, int minHeight)
+		{
+			if (Width < minWidth) Width = minWidth;
+			if (Height < minHeight) Height = minHeight;
 		}
 	}
 }
