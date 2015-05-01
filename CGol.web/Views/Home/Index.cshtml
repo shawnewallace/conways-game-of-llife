@@ -15,8 +15,9 @@
 		<input id="fill-factor" name="fill-factor" value=".5"/>
 	</div>
 	<select id="initial-state">
-		<option value="0">Random Board</option>
-		<option value="1">Blank Board</option>
+		<option value="random">Random Board</option>
+		<option value="blank">Blank Board</option>
+		<option value="symmetric">Symmetric Board</option>
 	</select>
 	<button id="new-board" name="new-board" type="button" class="btn btn-primary" value="New Board">Create New Game</button>
 </div>
@@ -72,8 +73,7 @@
 			});
 		});
 
-		var toggleRefresh = function(checkbox)
-		{
+		var toggleRefresh = function(checkbox) {
 			var checked = checkbox.is(":checked");
 
 			if (checked) {
@@ -92,22 +92,19 @@
 			tickCount = 0;
 		};
 
-		var newBoard = function () {
+		var newBoard = function() {
 			var URL = "/api/Game";
 
 			var width = $("#width").val();
 			var height = $("#height").val();
 			var fillFactor = $("#fill-factor").val();
 			var initialState = $("#initial-state").val();
-
-			if (initialState === "1") {
-				fillFactor = 0;
-			}
-
+			
 			var data = {
 				"width": width,
 				"height": height,
-				"fillfactor": fillFactor
+				"fillfactor": fillFactor,
+				"generator": initialState
 			};
 
 			$.ajax({
@@ -115,7 +112,7 @@
 				type: "POST",
 				data: JSON.stringify(data),
 				contentType: "application/json",
-				success: function (result) {
+				success: function(result) {
 					tickCount = 0;
 					board = result;
 					drawBoard();
@@ -131,7 +128,7 @@
 				type: "PUT",
 				data: JSON.stringify(board),
 				contentType: "application/json",
-				success: function (result) {
+				success: function(result) {
 					tickCount = tickCount + 1;
 					board = result;
 					drawBoard();
@@ -161,7 +158,15 @@
 			boardTable = boardTable + "</table>";
 
 			$("#tickCount").text(tickCount);
+
+			//$("#game-board").fadeOut(100, function() {
+			//	$("#game-board").html(boardTable).fadeIn(100);
+			//});
+
+
+			//$("#game-board").fadeOut().html(boardTable).fadeIn();
 			$("#game-board").html(boardTable);
+			//$("#game-board").fadeIn();
 		};
 	</script>
 }

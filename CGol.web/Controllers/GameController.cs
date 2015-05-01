@@ -28,6 +28,7 @@ namespace CGol.web.Controllers
 			Creator.Width = model.Width;
 			Creator.Height = model.Height;
 			Creator.FillFactor = model.FillFactor;
+			Creator.Generator = model.Generator;
 			var rawGame = Creator.Execute();
 
 			var game = new GameModel(rawGame) { FillFactor = model.FillFactor };
