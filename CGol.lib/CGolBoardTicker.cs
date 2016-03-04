@@ -24,7 +24,8 @@
 		private Cell IsAliveAfterTick(Cell[,] board, int x, int y)
 		{
 			var isAliveNow = board[x, y].Alive;
-			var numLivingNeighbors = LivingNeighbors(board, x, y);
+			//var numLivingNeighbors = LivingNeighbors(board, x, y);
+			var numLivingNeighbors = LivingNeighborsToroidal(board, x, y);
 
 			// Any live cell with fewer than two live neighbours dies, as if caused by under-population.
 			if (isAliveNow && numLivingNeighbors < 2) return new Cell() { Alive = false };
@@ -37,6 +38,28 @@
 			if (!isAliveNow && numLivingNeighbors == 3) return new Cell() { Alive = true };
 
 			return new Cell() {Alive = false};
+		}
+
+		private int LivingNeighborsToroidal(Cell[,] board, int x, int y)
+		{
+			var xLength = board.GetLength(0);
+			var yLength = board.GetLength(1);
+			var numNeighbors = 0;
+
+
+			for (var i = x - 1; i <= x + 1; i++)
+			{
+				for (var j = y - 1; j <= y + 1; j++)
+				{
+					if (i == x && j == y) continue;
+					var xNext = GetNext(i, xLength);
+					var yNext = GetNext(j, yLength);
+
+					if (board[xNext, yNext].Alive) numNeighbors++;
+				}
+			}
+
+			return numNeighbors;
 		}
 
 		private int LivingNeighbors(Cell[,] board, int x, int y)
@@ -65,6 +88,13 @@
 			}
 
 			return numNeighbors;
+		}
+
+		private static int GetNext(int index, int max)
+		{
+			if (index < 0) return max - 1;
+
+			return index % max;
 		}
 	}
 }
