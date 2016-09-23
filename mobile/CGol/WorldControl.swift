@@ -9,7 +9,7 @@
 import UIKit
 
 class WorldControl: UIView {
-  let spacing = 3
+  let spacing = 1
   var cellSize = 15
   
   var width = 20
@@ -43,8 +43,8 @@ class WorldControl: UIView {
       let button = UIButton()
       
       button.backgroundColor = UIColor.lightGray
-      button.layer.borderColor = UIColor.black.cgColor
-      button.layer.borderWidth = 1
+//      button.layer.borderColor = UIColor.black.cgColor
+//      button.layer.borderWidth = 1
       
       // button.addTarget(self, action: #selector(WorldControl.ratingButtonTapped(_:)), for: .touchDown)
       cells += [button]
