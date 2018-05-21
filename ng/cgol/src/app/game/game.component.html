@@ -1,0 +1,22 @@
+<div class="row">
+  <div>
+  <app-parameters></app-parameters>
+  </div>
+  <div>
+    <button #newBoard type="button" class="btn" (click)="createNewGame()">Create New Game</button>
+  </div>
+</div>
+
+<div class="row">
+  <div id="game-board-actions">
+    <input type="checkbox" id="toggle-auto-refresh" /> Auto Tick
+    <a href="#" id="service-tick">Tick</a>&nbsp;
+    <a href="#" id="reset-game-board">Start Over</a>&nbsp;
+    <br/>
+    <span>Tick Count:&nbsp;&nbsp;</span><span id="tickCount"></span>
+  </div>
+</div>
+
+<div class="row">
+  <app-board [board]="board"></app-board>
+</div>

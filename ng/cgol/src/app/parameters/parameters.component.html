@@ -1,0 +1,19 @@
+<div id="board-parameters">
+  <div>
+    <label>Dimensions</label>
+    <input #worldWidth placeholder="Width" [value]="width" />
+    <span>X</span>
+    <input #worldHeight placeholder="Height" [value]="height" />
+  </div>
+
+  <div>
+    <label>Fill Factor</label>
+    <input #fillFactorValue placeholder="Fill Factor" [value]="fillFactor" />
+  </div>
+
+  <div>
+    <select #initialState>
+      <option *ngFor="let initBoard of initialBoards" value={{initBoard.value}}>{{initBoard.display}}</option>
+	  </select>
+  </div>
+</div>
