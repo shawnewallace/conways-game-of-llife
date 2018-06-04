@@ -16,4 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\conways-game-of-life.lib\conways-game-of-life.lib.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameTests\" />
+  </ItemGroup>
 </Project>

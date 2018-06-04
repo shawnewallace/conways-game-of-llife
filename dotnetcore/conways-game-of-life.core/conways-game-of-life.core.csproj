@@ -7,7 +7,4 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\conways-game-of-life.core\conways-game-of-life.core.csproj" />
-  </ItemGroup>
 </Project>

@@ -1,8 +1,10 @@
-﻿namespace conways_game_of_life.lib
+﻿using conways_game_of_life.core;
+
+namespace conways_game_of_life.lib
 {
   public class LivingNeighborCalculator : ILivingNeighborCalculator
   {
-    public int Calc(Cell[,] board, int x, int y)
+    public int Calc(ICell[,] board, int x, int y)
     {
       var xMin = x - 1;
       var xMax = x + 1;

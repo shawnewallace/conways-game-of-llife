@@ -1,10 +1,12 @@
-﻿using conways_game_of_life.lib;
+﻿using conways_game_of_life.core;
+using conways_game_of_life.lib;
 using Moq;
 using Xunit;
 
 namespace conways_game_of_life.tests
 {
-  public class TickTests : cgol_test
+
+	public class TickerTests : cgol_test
   {
     [Theory]
     // Any live cell with fewer than two live neighbours dies, as if caused by under-population.
@@ -33,9 +35,9 @@ namespace conways_game_of_life.tests
     {
       var mockCalc = new Mock<ILivingNeighborCalculator>();
       mockCalc.Setup(n => n.Calc(It.IsAny<Cell[,]>(), 1, 1))
-          .Returns(numNeighborsBeforeTick);
+        .Returns(numNeighborsBeforeTick);
 
-      var ticker = new Ticker(mockCalc.Object);
+			var ticker = new Ticker(mockCalc.Object);
 
       CreateBoard(3, 3);
       _board[1, 1].Alive = livingBeforeTick;
