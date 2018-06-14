@@ -6,8 +6,8 @@ namespace conways_game_of_life.lib
   {
     public ITicker Ticker { get; }
     public double FillFactor { get; set; }
-    public int Height { get; }
-    public int Width { get; }
+		public int Height { get { return Board.GetLength(0); } }
+		public int Width { get { return Board.GetLength(1); } }
     public ICell[,] Board { get; set; }
 
     public Game(ITicker ticker)
@@ -24,5 +24,21 @@ namespace conways_game_of_life.lib
     {
       Board = Ticker.Tick(Board);
     }
+
+		public override string ToString(){
+			var result = "";
+
+			for (int i = 0; i < Width; i++){
+				for (var j = 0; j < Height; j++) {
+					if (IsAliveAt(i, j))
+						result += "O";
+					else
+						result += "_";
+				}
+				result += "\n";
+			}
+
+			return result;
+		}
   }
 }

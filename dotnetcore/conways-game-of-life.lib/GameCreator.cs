@@ -3,15 +3,15 @@ using conways_game_of_life.core;
 
 namespace conways_game_of_life.lib
 {
-  public class GameCreator : ICGolGameCreator
+	public class GameCreator : ICGolGameCreator
   {
     public int Width { get; set; }
     public int Height { get; set; }
     public double FillFactor { get; set; }
     public BoardGenerator Generator { get; set; }
-		public ICGolGame Game { get; }
+		public ICGolGame Game { get; private set; }
 
-		public GameCreator(ICGolGame game){
+		public GameCreator(ICGolGame game) {
 			Game = game;
 		}
 
@@ -192,7 +192,7 @@ namespace conways_game_of_life.lib
 			Game.Board = new Cell[Width, Height];
 
 
-      for (var i = 0; i < Width; i++)
+			for (var i = 0; i < Width; i++)
       {
         for (var j = 0; j < Height; j++)
         {

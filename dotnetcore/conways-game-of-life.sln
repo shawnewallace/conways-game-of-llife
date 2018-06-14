@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "conways-game-of-life.lib", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "conways-game-of-life.core", "conways-game-of-life.core\conways-game-of-life.core.csproj", "{59741983-5449-4E56-B183-A992F65CC1C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "conways-game-of-life.con", "conways-game-of-life.con\conways-game-of-life.con.csproj", "{F254B77A-9527-4571-BE4D-4EF5ED8DEE66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "conways-game-of-life.web", "conways-game-of-life.web\conways-game-of-life.web.csproj", "{99C560BA-D846-4E22-B4B1-100357A338E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,5 +29,13 @@ Global
 		{59741983-5449-4E56-B183-A992F65CC1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59741983-5449-4E56-B183-A992F65CC1C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59741983-5449-4E56-B183-A992F65CC1C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F254B77A-9527-4571-BE4D-4EF5ED8DEE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F254B77A-9527-4571-BE4D-4EF5ED8DEE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F254B77A-9527-4571-BE4D-4EF5ED8DEE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F254B77A-9527-4571-BE4D-4EF5ED8DEE66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C560BA-D846-4E22-B4B1-100357A338E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C560BA-D846-4E22-B4B1-100357A338E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C560BA-D846-4E22-B4B1-100357A338E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C560BA-D846-4E22-B4B1-100357A338E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
