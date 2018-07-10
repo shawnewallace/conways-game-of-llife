@@ -9,6 +9,7 @@ namespace conways_game_of_life.tests
     public ICell[,] Tick(ICell[,] board)
     {
       return board;
+      
     }
   }
 }
