@@ -6,7 +6,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/conways-game-of-life.tests/conways-game-of-life.tests.csproj"
+                "${workspaceFolder}/conways-game-of-life.sln"
             ],
             "problemMatcher": "$msCompile",
             "group" : {
