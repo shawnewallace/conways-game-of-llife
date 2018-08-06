@@ -4,12 +4,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
+import { ParamsComponent } from './params/params.component';
+import { GameControlsComponent } from './game-controls/game-controls.component';
+import { BoardComponent } from './board/board.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameComponent
+    GameComponent,
+    ParamsComponent,
+    GameControlsComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule
