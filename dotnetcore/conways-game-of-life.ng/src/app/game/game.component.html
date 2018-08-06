@@ -1,7 +1,11 @@
 <p>
-  game works!
+  <app-params
+    [width]="this.game.width"
+    [height]="this.game.height"
+    [fillFactor]="this.game.fillFactor"
+    [generators]="this.generators"></app-params>
 
-  <app-params></app-params>
+	<button (click)="clicker()">Create New Game</button>
 
   <app-game-controls></app-game-controls>
 

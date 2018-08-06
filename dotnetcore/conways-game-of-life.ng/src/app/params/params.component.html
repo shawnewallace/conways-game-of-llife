@@ -1,3 +1,23 @@
-<p>
-  params works!
-</p>
+<div id="board-parameters">
+	<div>
+		<label>
+      Width
+      <input [(ngModel)]="width" placeholder="width">
+    </label>
+	</div>
+	<div>
+      <label>
+          Height
+          <input [(ngModel)]="height" placeholder="height">
+        </label>
+	</div>
+	<div>
+      <label>
+          Fill-Factor
+          <input [(ngModel)]="fillFactor" placeholder="fill-factor">
+        </label>
+  </div>
+  <select>
+    <option *ngFor="let generator of generators" value={{generator.id}}>{{generator.name}}</option>
+  </select>
+</div>

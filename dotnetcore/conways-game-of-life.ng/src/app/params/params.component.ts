@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Game } from '../game';
+import { BoardGenerator } from '../board_generator';
 
 @Component({
   selector: 'app-params',
@@ -6,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./params.component.css']
 })
 export class ParamsComponent implements OnInit {
+
+  @Input() generators: BoardGenerator[];
+  @Input() width: number;
+  @Input() height: number;
+  @Input() fillFactor: number;
 
   constructor() { }
 
