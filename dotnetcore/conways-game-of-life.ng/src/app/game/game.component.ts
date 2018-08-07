@@ -22,15 +22,26 @@ export class GameComponent implements OnInit {
     this.gameService
         .getGenerators()
         .subscribe(
-          data => { this.generators = data; },
+          data => {
+            this.generators = data;
+          },
           err => console.error(err),
           () => console.log('done loading generators')
         );
   }
 
-  clicker(): void {
-    this.game.height = this.game.height + 10;
-    this.game.width = this.game.height;
+  createNewGame(): void {
+    this.gameService
+        .createNewGame(this.game.width, this.game.height, this.game.fillFactor)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.game.board = data.board;
+            console.log(this.game);
+          },
+          err => console.error(err),
+          () => console.log('done loading generators')
+        );
   }
 
   resetGame(): void {

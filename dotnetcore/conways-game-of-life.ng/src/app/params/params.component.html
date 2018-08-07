@@ -17,7 +17,14 @@
           <input [(ngModel)]="fillFactor" placeholder="fill-factor">
         </label>
   </div>
-  <select>
-    <option *ngFor="let generator of generators" value={{generator.id}}>{{generator.name}}</option>
-  </select>
+  <label>
+    Generator
+    <select>
+      <option *ngFor="let generator of generators" value={{generator.id}}>{{generator.name}}</option>
+    </select>
+  </label>
+
+
 </div>
+
+<button (click)="complete()">Create New Game</button>

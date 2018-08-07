@@ -1,3 +1,13 @@
-<p>
-  board works!
-</p>
+<section *ngIf=board>
+  There is a board here
+</section>
+
+<div>
+  <table>
+    <tr *ngFor="let row of board">
+      <td *ngFor="let field of row">
+        x
+      </td>
+    </tr>
+  </table>
+</div>

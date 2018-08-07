@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using conways_game_of_life.core;
+using conways_game_of_life.lib;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +25,11 @@ namespace conways_game_of_life.api {
     public void ConfigureServices (IServiceCollection services) {
       services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
       services.AddCors();
+
+      services.AddTransient<ICGolGame, Game>();
+      services.AddTransient<ICGolGameCreator, GameCreator>();
+      services.AddTransient<ITicker, Ticker>();
+      services.AddTransient<ILivingNeighborCalculator, LivingNeighborCalculator>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +42,8 @@ namespace conways_game_of_life.api {
 
       app.UseCors(builder => 
         builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
       );
 
       app.UseHttpsRedirection ();

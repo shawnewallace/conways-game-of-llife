@@ -19,7 +19,15 @@ export class GameService {
   constructor(private http:  HttpClient) { }
 
   getGenerators(): Observable<BoardGenerator[]> {
-    return this.http.get<BoardGenerator[]>('https://localhost:5001/api/generators');
+    return this.http.get<BoardGenerator[]>('http://localhost:5000/api/generators', httpOptions);
   }
 
+  createNewGame(width: number, height: number, fillFactor: number): Observable<Game> {
+    const body = {
+      width: width,
+      height: height,
+      fillFactor: fillFactor
+    };
+    return this.http.post<Game>('http://localhost:5000/api/game', body, httpOptions);
+  }
 }

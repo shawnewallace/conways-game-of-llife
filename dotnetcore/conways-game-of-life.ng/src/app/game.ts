@@ -3,5 +3,9 @@ export class Game {
   width = 10;
   fillFactor = 0.5;
   useToiroidalBoard: Boolean = false;
-  board: Boolean[][];
+  board: Cell[][];
+}
+
+export class Cell {
+  alive: boolean;
 }

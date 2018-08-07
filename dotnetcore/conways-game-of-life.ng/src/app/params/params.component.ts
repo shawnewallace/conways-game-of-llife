@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Game } from '../game';
 import { BoardGenerator } from '../board_generator';
 
@@ -14,9 +14,15 @@ export class ParamsComponent implements OnInit {
   @Input() height: number;
   @Input() fillFactor: number;
 
+  @Output() completed = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  complete() {
+    this.completed.emit();
   }
 
 }
