@@ -21,7 +21,11 @@ export class GameComponent implements OnInit {
   getGenerators(): void {
     this.gameService
         .getGenerators()
-        .subscribe(gens => this.generators = gens);
+        .subscribe(
+          data => { this.generators = data; },
+          err => console.error(err),
+          () => console.log('done loading generators')
+        );
   }
 
   clicker(): void {

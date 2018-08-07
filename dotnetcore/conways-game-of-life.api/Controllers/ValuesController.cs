@@ -11,11 +11,11 @@ namespace conways_game_of_life.api.Controllers {
     [HttpGet]
     public ActionResult<IEnumerable<Generator>> Get () {
       var result = new List<Generator> ();
-      result.Add (new Generator () { Key = 0, Value = "Random" });
-      result.Add (new Generator () { Key = 1, Value = "Blank" });
-      result.Add (new Generator () { Key = 2, Value = "Symmetric" });
-      result.Add (new Generator () { Key = 3, Value = "Checkerboard" });
-      result.Add (new Generator () { Key = 4, Value = "Gosper's Gliding Gun" });
+      result.Add (new Generator () { id = 0, name = "Random" });
+      result.Add (new Generator () { id = 1, name = "Blank" });
+      result.Add (new Generator () { id = 2, name = "Symmetric" });
+      result.Add (new Generator () { id = 3, name = "Checkerboard" });
+      result.Add (new Generator () { id = 4, name = "Gosper's Gliding Gun" });
 
       return result;
     }

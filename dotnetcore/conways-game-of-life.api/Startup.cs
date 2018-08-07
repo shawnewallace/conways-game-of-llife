@@ -34,7 +34,7 @@ namespace conways_game_of_life.api {
       }
 
       app.UseCors(builder => 
-        builder.WithOrigins("http://localhost:3000")
+        builder.AllowAnyOrigin()
       );
 
       app.UseHttpsRedirection ();
