@@ -28,6 +28,9 @@ export class GameService {
       height: height,
       fillFactor: fillFactor
     };
+
+    console.log(body);
+
     return this.http.post<Game>('http://localhost:5000/api/game', body, httpOptions);
   }
 }

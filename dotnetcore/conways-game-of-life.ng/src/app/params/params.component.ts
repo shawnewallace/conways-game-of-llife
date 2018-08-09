@@ -14,7 +14,7 @@ export class ParamsComponent implements OnInit {
   @Input() height: number;
   @Input() fillFactor: number;
 
-  @Output() completed = new EventEmitter();
+  @Output() completed: EventEmitter<Game> = new EventEmitter();
 
   constructor() { }
 
@@ -22,7 +22,12 @@ export class ParamsComponent implements OnInit {
   }
 
   complete() {
-    this.completed.emit();
+    const result = new Game();
+    result.height = this.height;
+    result.width = this.width;
+    result.fillFactor = this.fillFactor;
+
+    this.completed.emit(result);
   }
 
 }

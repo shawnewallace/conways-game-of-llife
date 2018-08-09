@@ -8,9 +8,11 @@ import { Game } from '../game';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css'],
 })
+
 export class GameComponent implements OnInit {
   game: Game;
   generators: BoardGenerator[];
+  tickCount = 0;
 
   constructor(private gameService: GameService) { }
 
@@ -30,7 +32,12 @@ export class GameComponent implements OnInit {
         );
   }
 
-  createNewGame(): void {
+  createNewGame(parameters: Game): void {
+    this.game.width = parameters.width;
+    this.game.height = parameters.height;
+    this.game.fillFactor = parameters.fillFactor;
+
+    this.tickCount = 0;
     this.gameService
         .createNewGame(this.game.width, this.game.height, this.game.fillFactor)
         .subscribe(
@@ -40,12 +47,17 @@ export class GameComponent implements OnInit {
             console.log(this.game);
           },
           err => console.error(err),
-          () => console.log('done loading generators')
+          () => console.log('done creating game')
         );
+  }
+
+  tick(): void {
+    this.tickCount = this.tickCount + 1;
   }
 
   resetGame(): void {
     this.game = new Game();
+    this.tickCount = 0;
     this.getGenerators();
   }
 

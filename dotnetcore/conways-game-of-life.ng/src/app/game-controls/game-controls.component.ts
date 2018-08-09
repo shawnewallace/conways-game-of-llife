@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-game-controls',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-controls.component.css']
 })
 export class GameControlsComponent implements OnInit {
+  @Input() ticks: number;
 
   constructor() { }
 
