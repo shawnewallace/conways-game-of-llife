@@ -5,5 +5,7 @@ namespace conways_game_of_life.lib
 	public class Cell : ICell
 	{
 		public bool Alive { get; set; }
-	}
+    public int X { get; internal set; }
+    public int Y { get; internal set; }
+  }
 }

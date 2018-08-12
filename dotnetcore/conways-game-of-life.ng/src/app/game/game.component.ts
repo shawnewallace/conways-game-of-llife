@@ -10,7 +10,7 @@ import { Game } from '../game';
 })
 
 export class GameComponent implements OnInit {
-  game: Game;
+  game = new Game();
   generators: BoardGenerator[];
   tickCount = 0;
 
@@ -33,6 +33,8 @@ export class GameComponent implements OnInit {
   }
 
   createNewGame(parameters: Game): void {
+    console.log('creating new game with params:');
+    console.log(parameters);
     this.game.width = parameters.width;
     this.game.height = parameters.height;
     this.game.fillFactor = parameters.fillFactor;
@@ -43,7 +45,7 @@ export class GameComponent implements OnInit {
         .subscribe(
           data => {
             console.log(data);
-            this.game.board = data.board;
+            this.game = data;
             console.log(this.game);
           },
           err => console.error(err),
@@ -53,6 +55,18 @@ export class GameComponent implements OnInit {
 
   tick(): void {
     this.tickCount = this.tickCount + 1;
+
+    this.gameService
+        .tick(this.game)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.game = data;
+            console.log(this.game);
+          },
+          err => console.error(err),
+          () => console.log('done ticking board')
+        );
   }
 
   resetGame(): void {

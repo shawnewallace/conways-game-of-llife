@@ -9,8 +9,10 @@ import { Observable } from 'rxjs';
 import { resetFakeAsyncZone } from '../../node_modules/@angular/core/testing';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' })
 };
+
+const rootUrl = 'https://localhost:5001/api';
 
 @Injectable()
 export class GameService {
@@ -19,7 +21,7 @@ export class GameService {
   constructor(private http:  HttpClient) { }
 
   getGenerators(): Observable<BoardGenerator[]> {
-    return this.http.get<BoardGenerator[]>('http://localhost:5000/api/generators', httpOptions);
+    return this.http.get<BoardGenerator[]>(`${rootUrl}/generators`, httpOptions);
   }
 
   createNewGame(width: number, height: number, fillFactor: number): Observable<Game> {
@@ -31,6 +33,13 @@ export class GameService {
 
     console.log(body);
 
-    return this.http.post<Game>('http://localhost:5000/api/game', body, httpOptions);
+    return this.http.post<Game>(`${rootUrl}/game`, body, httpOptions);
+  }
+
+  tick(game: Game) {
+    console.log('Ticking board:');
+    console.log(game);
+
+    return this.http.post<Game>(`${rootUrl}/game/tick`, game, httpOptions);
   }
 }

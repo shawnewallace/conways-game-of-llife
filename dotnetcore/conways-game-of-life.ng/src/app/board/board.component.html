@@ -1,13 +1,33 @@
 <section *ngIf=board>
   There is a board here
+
+  <div>
+    <table border=1>
+      <tr *ngFor="let y of heightRange">
+        <td *ngFor="let x of widthRange">
+          <span *ngIf="board[x][y]">X</span>
+          <span *ngIf="!board[x][y]">&nbsp;</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
 </section>
 
-<div>
-  <table>
-    <tr *ngFor="let row of board">
-      <td *ngFor="let field of row">
-        x
-      </td>
-    </tr>
-  </table>
-</div>
+
+<!-- var boardTable = "<table>";
+
+	for (var y = 0; y < height; y++) {
+		boardTable = boardTable + "<tr>";
+		for (var x = 0; x < width; x++) {
+			if (board.board[x][y] == true) {
+				boardTable = boardTable + "<td class='cell " + cellSize + " alive' data-x='" + x + "' data-y='" + y + "'><div></div>";
+			} else {
+				boardTable = boardTable + "<td class='cell " + cellSize + " dead' data-x='" + x + "' data-y='" + y + "'><div></div>";
+			}
+			boardTable = boardTable + "</td>";
+		}
+		boardTable = boardTable + "</tr>";
+	}
+
+	boardTable = boardTable + "</table>"; -->

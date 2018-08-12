@@ -171,6 +171,7 @@ namespace conways_game_of_life.lib
     private ICGolGame RandomBoard()
     {
       var game = InitializeGame();
+      game.FillFactor = FillFactor;
 
       var rand = new Random();
 
@@ -180,7 +181,7 @@ namespace conways_game_of_life.lib
         {
           var shouldBeAlive = rand.NextDouble() < FillFactor;
 
-          game.Board[i, j] = new Cell { Alive = shouldBeAlive };
+          game.Board[i, j] = new Cell { Alive = shouldBeAlive, X = i, Y = j };
         }
       }
 

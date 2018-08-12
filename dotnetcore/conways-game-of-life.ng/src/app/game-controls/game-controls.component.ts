@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-game-controls',
@@ -7,10 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GameControlsComponent implements OnInit {
   @Input() ticks: number;
+  @Output() ticked = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  tick() {
+    this.ticked.emit();
+  }
 }

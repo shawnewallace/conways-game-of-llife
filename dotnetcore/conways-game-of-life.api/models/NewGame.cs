@@ -1,3 +1,7 @@
+using System;
+using conways_game_of_life.core;
+using conways_game_of_life.lib;
+
 namespace conways_game_of_life.api.Models
 {
   public class NewGame

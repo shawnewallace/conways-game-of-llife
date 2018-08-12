@@ -2,19 +2,19 @@
 	<div>
 		<label>
       Width
-      <input [(ngModel)]="width" placeholder="width">
+      <input [(ngModel)]="width" type="number" placeholder="width" min="1" max="100" step="1">
     </label>
 	</div>
 	<div>
       <label>
           Height
-          <input [(ngModel)]="height" placeholder="height">
+          <input [(ngModel)]="height" type="number" placeholder="height" min="1" max="100" step="1">
         </label>
 	</div>
 	<div>
       <label>
           Fill-Factor
-          <input [(ngModel)]="fillFactor" placeholder="fill-factor">
+          <input [(ngModel)]="fillFactor" type="number" placeholder="fill-factor" min=".1" max="1" step=".1">
         </label>
   </div>
   <label>
