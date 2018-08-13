@@ -23,10 +23,16 @@ export class GameService {
   constructor(private http:  HttpClient) { }
 
   getGenerators(): Observable<BoardGenerator[]> {
-    return this.http.get<BoardGenerator[]>(`${rootUrl}/generators`, httpOptions);
+    const path = `${rootUrl}/generators`;
+    console.log(`GET from ${path}`);
+
+    return this.http.get<BoardGenerator[]>(path, httpOptions);
   }
 
   createNewGame(width: number, height: number, fillFactor: number): Observable<Game> {
+    const path = `${rootUrl}/game`;
+    console.log(`POST to ${path}`);
+
     const body = {
       width: width,
       height: height,
@@ -39,12 +45,12 @@ export class GameService {
   }
 
   tick(game: Game) {
+    const path = `${rootUrl}/game/tick`;
+    console.log(`POST to ${path}`);
+
     console.log('Ticking board:');
     console.log(game);
 
-    const request = new GameApiRequest();
-    request.body = game;
-
-    return this.http.post<GameApiRequest>(`${rootUrl}/game/tick`, request, httpOptions);
+    return this.http.post<Game>(`${rootUrl}/game/tick`, game, httpOptions);
   }
 }

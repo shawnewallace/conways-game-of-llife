@@ -68,5 +68,22 @@ namespace conways_game_of_life.lamda {
 
       return response;
     }
+
+    public APIGatewayProxyResponse TickAGame (APIGatewayProxyRequest request, ILambdaContext context) {
+      GameModel game = JsonConvert.DeserializeObject<GameModel> (request.Body);
+      var ticker = _serviceProvider.GetService<ITicker> ();
+      
+      ICGolGame domainGame = new Game(ticker);
+      domainGame = game.ApplyTo(domainGame);
+      domainGame.Tick();
+
+      var response = new APIGatewayProxyResponse {
+        StatusCode = 200,
+        Body = JsonConvert.SerializeObject (new GameModel (domainGame)),
+        Headers = _headers
+      };
+
+      return response;
+    }
   }
 }

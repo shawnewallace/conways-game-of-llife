@@ -1,5 +1,8 @@
 service: conways-game-of-life-lambda
 
+plugins:
+  - serverless-offline
+
 provider:
   name: aws
   runtime: dotnetcore2.0
@@ -24,5 +27,12 @@ functions:
     events:
       - http:
           path: 'game'
+          method: post
+          cors: true
+  tick:
+    handler: CsharpHandlers::conways_game_of_life.lamda.Handler::TickAGame
+    events:
+      - http:
+          path: 'game/tick'
           method: post
           cors: true
