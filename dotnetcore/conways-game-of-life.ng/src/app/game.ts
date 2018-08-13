@@ -5,3 +5,7 @@ export class Game {
   useToiroidalBoard: Boolean = false;
   board: boolean[][];
 }
+
+export class GameApiRequest {
+  body: Game;
+}

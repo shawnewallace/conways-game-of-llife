@@ -44,6 +44,7 @@ export class GameComponent implements OnInit {
         .createNewGame(this.game.width, this.game.height, this.game.fillFactor)
         .subscribe(
           data => {
+            console.log('RECEIVED BY createNewGame:');
             console.log(data);
             this.game = data;
             console.log(this.game);

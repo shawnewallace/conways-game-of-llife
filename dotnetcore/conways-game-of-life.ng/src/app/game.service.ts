@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Game } from './game';
+import { Game, GameApiRequest } from './game';
 import { BoardGenerator } from './board_generator';
 
 import { BOARD_GENERATORS } from './mock_generators';
@@ -12,7 +12,9 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' })
 };
 
-const rootUrl = 'https://localhost:5001/api';
+// const rootUrl = 'https://localhost:5001/api';
+const rootUrl = 'https://20b4yyylc8.execute-api.us-east-2.amazonaws.com/dev';
+
 
 @Injectable()
 export class GameService {
@@ -40,6 +42,9 @@ export class GameService {
     console.log('Ticking board:');
     console.log(game);
 
-    return this.http.post<Game>(`${rootUrl}/game/tick`, game, httpOptions);
+    const request = new GameApiRequest();
+    request.body = game;
+
+    return this.http.post<GameApiRequest>(`${rootUrl}/game/tick`, request, httpOptions);
   }
 }
