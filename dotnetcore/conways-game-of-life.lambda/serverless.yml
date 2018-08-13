@@ -53,8 +53,6 @@ package:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
   generators:
     handler: CsharpHandlers::AwsDotnetCsharp.Handler::GetBoardGenerators
     events:

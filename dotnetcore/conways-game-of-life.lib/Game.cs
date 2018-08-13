@@ -6,8 +6,8 @@ namespace conways_game_of_life.lib
   {
     public ITicker Ticker { get; }
     public double FillFactor { get; set; }
-		public int Height { get { return Board.GetLength(0); } }
-		public int Width { get { return Board.GetLength(1); } }
+		public int Height { get { return Board.GetLength(1); } }
+		public int Width { get { return Board.GetLength(0); } }
     public ICell[,] Board { get; set; }
 
     public Game(ITicker ticker)
