@@ -1,9 +1,10 @@
 <div *ngIf=board class="container">
+
   <table>
     <tr *ngFor="let y of heightRange">
       <td *ngFor="let x of widthRange">
-        <span *ngIf="board[x][y]">X</span>
-        <span *ngIf="!board[x][y]">_</span>
+        <fa *ngIf="board[x][y]" name="bug"></fa>
+        <fa *ngIf="!board[x][y]" name="bug" inverse="true"></fa>
       </td>
     </tr>
   </table>
