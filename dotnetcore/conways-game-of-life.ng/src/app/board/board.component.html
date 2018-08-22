@@ -3,8 +3,14 @@
   <table>
     <tr *ngFor="let y of heightRange">
       <td *ngFor="let x of widthRange">
-        <fa *ngIf="board[x][y]" name="bug"></fa>
-        <fa *ngIf="!board[x][y]" name="bug" inverse="true"></fa>
+        <section *ngIf="!showSmallBoard">
+          <fa *ngIf="board[x][y]" name="bug" size="lg"></fa>
+          <fa *ngIf="!board[x][y]" name="bug" size="lg" inverse="true"></fa>
+        </section>
+        <section *ngIf="showSmallBoard">
+            <fa *ngIf="board[x][y]" name="bug" size="xs"></fa>
+            <fa *ngIf="!board[x][y]" name="bug" size="xs" inverse="true"></fa>
+          </section>
       </td>
     </tr>
   </table>

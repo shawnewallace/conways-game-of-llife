@@ -12,13 +12,33 @@ export class BoardComponent implements OnInit, OnChanges {
   widthRange: number[];
   heightRange: number[];
 
-  constructor() { }
+  showSmallBoard: boolean;
+
+  constructor() {
+    this.showSmallBoard = false;
+  }
 
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('Board changed: you should be redrawing.');
     console.log(this.board);
+
+    this.showSmallBoard = false;
+
+    if (this.width > 20) {
+      this.showSmallBoard = true;
+    }
+
+    if (this.height > 20) {
+      this.showSmallBoard = true;
+    }
+
+    if (this.showSmallBoard) {
+      console.log('showing SMALL board');
+    } else {
+      console.log('showing NORMAL board');
+    }
 
     this.widthRange = Array(this.width).fill(1).map((_, i) => i);
     this.heightRange = Array(this.height).fill(1).map((_, i) => i);

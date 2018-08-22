@@ -1,6 +1,6 @@
 export class Game {
-  height = 3;
-  width = 3;
+  height = 10;
+  width = 10;
   fillFactor = 0.5;
   useToiroidalBoard: Boolean = false;
   board: boolean[][];

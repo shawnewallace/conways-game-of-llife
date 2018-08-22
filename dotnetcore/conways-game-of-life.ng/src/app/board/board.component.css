@@ -2,12 +2,11 @@
 {
   text-align: center;
 	/* border: 1px solid green; */
-	padding: 5px;
+  padding: 5px;
+  font-size: 0.5rem;
 }
 
 .container table {
-	/* border: 1px solid red; */
-	/* You can also uncomment this and remove the align="center" attribute
-		margin: 0 auto;
-	*/
+  border: 1px solid black;
+  padding: 0px;
 }
