@@ -4,8 +4,8 @@
     <tr *ngFor="let y of heightRange">
       <td *ngFor="let x of widthRange">
         <section *ngIf="!showSmallBoard">
-          <fa *ngIf="board[x][y]" name="bug" size="lg"></fa>
-          <fa *ngIf="!board[x][y]" name="bug" size="lg" inverse="true"></fa>
+          <fa *ngIf="board[x][y]" name="bug" size="5x"></fa>
+          <fa *ngIf="!board[x][y]" name="bug" size="5x" inverse="true"></fa>
         </section>
         <section *ngIf="showSmallBoard">
             <fa *ngIf="board[x][y]" name="bug" size="xs"></fa>

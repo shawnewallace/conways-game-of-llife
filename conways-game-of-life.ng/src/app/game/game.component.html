@@ -6,11 +6,14 @@
     [generators]="this.generators"
     (completed)="createNewGame($event)"></app-params>
 
-  <app-game-controls
+  <app-game-controls *ngIf="this.activeGame"
+    [autoTick]="autoTick"
     [ticks]="tickCount"
-    (ticked)="tick()"></app-game-controls>
+    (ticked)="tick()"
+    (toggleAutotick)="toggleAutotick()"
+    (reset)="resetGame()"></app-game-controls>
 
-  <app-board
+  <app-board *ngIf="this.activeGame"
     [board]="this.game.board"
     [width]="this.game.width"
     [height]="this.game.height"></app-board>

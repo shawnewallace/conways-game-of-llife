@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { BoardGenerator } from '../board_generator';
 import { Game } from '../game';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -13,6 +14,8 @@ export class GameComponent implements OnInit {
   game = new Game();
   generators: BoardGenerator[];
   tickCount = 0;
+  autoTick = true;
+  activeGame = false;
 
   constructor(private gameService: GameService) { }
 
@@ -33,6 +36,8 @@ export class GameComponent implements OnInit {
   }
 
   createNewGame(parameters: Game): void {
+    this.activeGame = true;
+
     console.log('creating new game with params:');
     console.log(parameters);
     this.game.width = parameters.width;
@@ -70,7 +75,23 @@ export class GameComponent implements OnInit {
         );
   }
 
+  toggleAutotick(): void {
+    this.autoTick = !this.autoTick;
+
+    console.log(`Autoticked changed to ${this.autoTick}`);
+
+    Observable.timer(0, 1000)
+      .takeWhile(() => this.autoTick)
+      .subscribe(() => {
+        console.log('Autotick Triggered');
+        this.tick();
+      });
+  }
+
   resetGame(): void {
+    this.activeGame = false;
+    this.autoTick = false;
+
     this.game = new Game();
     this.tickCount = 0;
     this.getGenerators();
