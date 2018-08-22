@@ -1,0 +1,17 @@
+<div>
+  <app-params
+    [width]="this.game.width"
+    [height]="this.game.height"
+    [fillFactor]="this.game.fillFactor"
+    [generators]="this.generators"
+    (completed)="createNewGame($event)"></app-params>
+
+  <app-game-controls
+    [ticks]="tickCount"
+    (ticked)="tick()"></app-game-controls>
+
+  <app-board
+    [board]="this.game.board"
+    [width]="this.game.width"
+    [height]="this.game.height"></app-board>
+</div>

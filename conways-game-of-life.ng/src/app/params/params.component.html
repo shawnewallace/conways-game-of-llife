@@ -1,0 +1,30 @@
+<div id="board-parameters">
+	<div>
+		<label>
+      Width
+      <input [(ngModel)]="width" type="number" placeholder="width" min="1" max="100" step="1">
+    </label>
+	</div>
+	<div>
+      <label>
+          Height
+          <input [(ngModel)]="height" type="number" placeholder="height" min="1" max="100" step="1">
+        </label>
+	</div>
+	<div>
+      <label>
+          Fill-Factor
+          <input [(ngModel)]="fillFactor" type="number" placeholder="fill-factor" min=".1" max="1" step=".1">
+        </label>
+  </div>
+  <label>
+    Generator
+    <select>
+      <option *ngFor="let generator of generators" value={{generator.id}}>{{generator.name}}</option>
+    </select>
+  </label>
+
+
+</div>
+
+<button (click)="complete()">Create New Game</button>
