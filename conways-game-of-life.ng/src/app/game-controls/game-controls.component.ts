@@ -8,6 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class GameControlsComponent implements OnInit {
   @Input() ticks: number;
   @Input() autoTick: boolean;
+
+  // exposed events
   @Output() ticked = new EventEmitter();
   @Output() toggleAutotick = new EventEmitter();
   @Output() reset = new EventEmitter();

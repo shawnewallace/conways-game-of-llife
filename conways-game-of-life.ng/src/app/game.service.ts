@@ -8,12 +8,15 @@ import { BOARD_GENERATORS } from './mock_generators';
 import { Observable } from 'rxjs';
 import { resetFakeAsyncZone } from '../../node_modules/@angular/core/testing';
 
+import { environment } from '../environments/environment';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' })
 };
 
 // const rootUrl = 'https://localhost:5001/api';
-const rootUrl = 'https://20b4yyylc8.execute-api.us-east-2.amazonaws.com/dev';
+// const rootUrl = 'https://20b4yyylc8.execute-api.us-east-2.amazonaws.com/dev';
+const rootUrl = environment.apiEndpoint;
 
 
 @Injectable()
