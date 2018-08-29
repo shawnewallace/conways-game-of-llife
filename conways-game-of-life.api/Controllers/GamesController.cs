@@ -25,7 +25,7 @@ namespace conways_game_of_life.api.Controllers
       _creator.Height = model.height;
       _creator.Width = model.width;
       _creator.FillFactor = model.fillFactor;
-      _creator.Generator = BoardGenerator.Random;
+      _creator.Generator = model.generator;
 
       var game = _creator.Execute ();
 

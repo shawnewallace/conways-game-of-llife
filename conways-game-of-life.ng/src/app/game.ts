@@ -4,6 +4,7 @@ export class Game {
   fillFactor = 0.5;
   useToiroidalBoard: Boolean = false;
   board: boolean[][];
+  generator: "Random";
 }
 
 export class GameApiRequest {

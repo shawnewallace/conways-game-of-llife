@@ -43,6 +43,7 @@ export class GameComponent implements OnInit {
     this.game.width = parameters.width;
     this.game.height = parameters.height;
     this.game.fillFactor = parameters.fillFactor;
+    this.game.generator = parameters.generator;
 
     this.tickCount = 0;
     this.gameService

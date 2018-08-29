@@ -56,8 +56,8 @@ namespace conways_game_of_life.lamda {
       creator.Height = gameParams.height;
       creator.Width = gameParams.width;
       creator.FillFactor = gameParams.fillFactor;
-      creator.Generator = BoardGenerator.Random;
-
+      creator.Generator = gameParams.generator;
+      
       var game = creator.Execute ();
 
       var response = new APIGatewayProxyResponse {
