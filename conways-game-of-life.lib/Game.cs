@@ -9,6 +9,7 @@ namespace conways_game_of_life.lib
 		public int Height { get { return Board.GetLength(1); } }
 		public int Width { get { return Board.GetLength(0); } }
     public ICell[,] Board { get; set; }
+    public BoardGenerator Generator { get; set; }
 
     public Game(ITicker ticker)
     {

@@ -4,6 +4,7 @@
     [height]="this.game.height"
     [fillFactor]="this.game.fillFactor"
     [generators]="this.generators"
+    [selectedGenerator]="this.game.generator"
     (completed)="createNewGame($event)"></app-params>
 
   <app-game-controls *ngIf="this.activeGame"

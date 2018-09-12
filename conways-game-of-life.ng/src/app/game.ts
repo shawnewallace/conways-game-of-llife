@@ -4,7 +4,7 @@ export class Game {
   fillFactor = 0.5;
   useToiroidalBoard: Boolean = false;
   board: boolean[][];
-  generator: "Random";
+  generator: string = 'Symmetric';
 }
 
 export class GameApiRequest {

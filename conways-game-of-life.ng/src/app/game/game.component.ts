@@ -47,7 +47,7 @@ export class GameComponent implements OnInit {
 
     this.tickCount = 0;
     this.gameService
-        .createNewGame(this.game.width, this.game.height, this.game.fillFactor)
+        .createNewGame(this.game.width, this.game.height, this.game.fillFactor, this.game.generator)
         .subscribe(
           data => {
             console.log('RECEIVED BY createNewGame:');

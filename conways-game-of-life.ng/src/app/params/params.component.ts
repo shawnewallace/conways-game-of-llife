@@ -13,6 +13,7 @@ export class ParamsComponent implements OnInit {
   @Input() width: number;
   @Input() height: number;
   @Input() fillFactor: number;
+  @Input() selectedGenerator: string;
 
   @Output() completed: EventEmitter<Game> = new EventEmitter();
 
@@ -26,6 +27,7 @@ export class ParamsComponent implements OnInit {
     result.height = this.height;
     result.width = this.width;
     result.fillFactor = this.fillFactor;
+    result.generator = this.selectedGenerator;
 
     this.completed.emit(result);
   }

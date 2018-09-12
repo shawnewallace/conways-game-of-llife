@@ -32,14 +32,16 @@ export class GameService {
     return this.http.get<BoardGenerator[]>(path, httpOptions);
   }
 
-  createNewGame(width: number, height: number, fillFactor: number): Observable<Game> {
+  createNewGame(width: number, height: number, fillFactor: number, generator: string): Observable<Game> {
     const path = `${rootUrl}/game`;
     console.log(`POST to ${path}`);
+    console.log(`Creating a new game: ${width}x${width}-${fillFactor} ${generator}`);
 
     const body = {
       width: width,
       height: height,
-      fillFactor: fillFactor
+      fillFactor: fillFactor,
+      generator: generator
     };
 
     console.log(body);

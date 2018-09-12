@@ -9,6 +9,7 @@ namespace conways_game_of_life.lamda.Models
     [JsonProperty(PropertyName = "fillFactor")] public double FillFactor { get; set; }
     [JsonProperty(PropertyName = "height")] public int Height { get; set; }
     [JsonProperty(PropertyName = "width")] public int Width { get; set; }
+    [JsonProperty(PropertyName = "generator")] public BoardGenerator Generator { get; set; }
     [JsonProperty(PropertyName = "board")] public bool[,] Board { get; set; }
 
     public GameModel()
@@ -20,6 +21,7 @@ namespace conways_game_of_life.lamda.Models
       Height = model.Height;
       Width = model.Width;
       FillFactor = model.FillFactor;
+      Generator = model.Generator;
 
       Board = new bool[Width, Height];
 

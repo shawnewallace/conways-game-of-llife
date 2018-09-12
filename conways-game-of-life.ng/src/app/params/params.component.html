@@ -19,8 +19,8 @@
   </div>
   <label>
     Generator
-    <select>
-      <option *ngFor="let generator of generators" value={{generator.name}}>{{generator.name}}</option>
+    <select [(ngModel)]="selectedGenerator">
+      <option *ngFor="let generator of generators" [ngValue]="generator.name">{{generator.name}}</option>
     </select>
   </label>
 

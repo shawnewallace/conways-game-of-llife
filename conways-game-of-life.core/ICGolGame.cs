@@ -10,5 +10,6 @@ namespace conways_game_of_life.core
     ICell[,] Board { get; set; }
     bool IsAliveAt(int x, int y);
     void Tick();
+    BoardGenerator Generator { get; set; }
   }
 }
