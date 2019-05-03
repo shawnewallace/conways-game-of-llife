@@ -9,9 +9,11 @@
 
   <app-game-controls *ngIf="this.activeGame"
     [autoTick]="autoTick"
+    [toroidalBoard]="toiroidal"
     [ticks]="tickCount"
     (ticked)="tick()"
     (toggleAutotick)="toggleAutotick()"
+    (toggleToiroidal)="toggleToiroidal()"
     (reset)="resetGame()"></app-game-controls>
 
   <app-board *ngIf="this.activeGame"

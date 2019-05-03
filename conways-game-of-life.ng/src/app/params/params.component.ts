@@ -31,5 +31,4 @@ export class ParamsComponent implements OnInit {
 
     this.completed.emit(result);
   }
-
 }

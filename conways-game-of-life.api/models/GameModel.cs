@@ -6,6 +6,7 @@ namespace conways_game_of_life.api.Models
   public class GameModel
   {
     public double FillFactor { get; set; }
+    public string Generator { get; private set; }
     public int Height { get; set; }
     public int Width { get; set; }
     public bool[,] Board { get; set; }
@@ -19,6 +20,7 @@ namespace conways_game_of_life.api.Models
       Height = model.Height;
       Width = model.Width;
       FillFactor = model.FillFactor;
+      Generator = model.Generator.ToString("F");
 
       Board = new bool[Width, Height];
 

@@ -1,5 +1,6 @@
 <div id="game-board-actions">
-  <input type="checkbox" id="toggle-auto-refresh" (click)="toggle()" [(ngModel)]="autoTick" /> Auto Tick
+  <input type="checkbox" id="toggle-toiroidal" (click)="toggleT()" [(ngModel)]="toroidalBoard" /> Use Toiroidal Board<br/>
+  <input type="checkbox" id="toggle-auto-refresh" (click)="toggle()" [(ngModel)]="autoTick" /> Auto Tick<br />
 
   <button (click)="tick()">Tick</button>&nbsp;
 

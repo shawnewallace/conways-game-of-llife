@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { BoardGenerator } from '../board_generator';
 import { Game } from '../game';
+// tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,6 +16,7 @@ export class GameComponent implements OnInit {
   generators: BoardGenerator[];
   tickCount = 0;
   autoTick = true;
+  toiroidal = false;
   activeGame = false;
 
   constructor(private gameService: GameService) { }
@@ -53,7 +55,6 @@ export class GameComponent implements OnInit {
             console.log('RECEIVED BY createNewGame:');
             console.log(data);
             this.game = data;
-            console.log(this.game);
           },
           err => console.error(err),
           () => console.log('done creating game')
@@ -87,6 +88,14 @@ export class GameComponent implements OnInit {
         console.log('Autotick Triggered');
         this.tick();
       });
+  }
+
+  toggleToiroidal(): void {
+    this.toiroidal = !this.toiroidal;
+    this.game.useToiroidalBoard = this.toiroidal;
+
+    console.log(`Toiroidal changed to ${this.toiroidal}`);
+
   }
 
   resetGame(): void {

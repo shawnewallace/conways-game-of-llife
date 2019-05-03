@@ -27,7 +27,7 @@ namespace conways_game_of_life.api.Controllers
       _creator.FillFactor = model.fillFactor;
       _creator.Generator = model.generator;
 
-      var game = _creator.Execute ();
+      var game = _creator.Execute();
 
       return Created ("", new GameModel(game));
     }
