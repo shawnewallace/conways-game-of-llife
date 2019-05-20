@@ -3,10 +3,8 @@ using conways_game_of_life.core;
 
 namespace conways_game_of_life.lib
 {
-
 	public class Ticker : ITicker
 	{
-
 		private ILivingNeighborCalculator LivingNeighborCalculator { get; set; }
 
 		public Ticker(ILivingNeighborCalculator calculator)
