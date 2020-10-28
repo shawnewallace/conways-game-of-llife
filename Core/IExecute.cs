@@ -9,4 +9,9 @@ namespace Cgol.Core
 	{
 		T Execute();
 	}
+
+	public interface IExecute<T, Tin>
+	{
+		T Execute(Tin old);
+	}
 }
