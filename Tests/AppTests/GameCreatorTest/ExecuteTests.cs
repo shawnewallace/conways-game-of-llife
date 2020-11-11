@@ -15,7 +15,7 @@ namespace Cgol.Tests.AppTests.GameFactoryTests
 		[InlineData(10, 7, .2)]
 		public void CreateNewGameTests(int width, int height, double fillFactor)
 		{
-			var creator = new GameFactory();
+			var creator = new GameFactory(null);
 			creator.Width = width;
 			creator.Height = height;
 			creator.FillFactor = fillFactor;
@@ -33,7 +33,7 @@ namespace Cgol.Tests.AppTests.GameFactoryTests
 		[InlineData(10, 7)]
 		public void all_cells_are_initially_dead_because_of_fill_factor_0(int width, int height)
 		{
-			var creator = new GameFactory();
+			var creator = new GameFactory(null);
 			creator.Width = width;
 			creator.Height = height;
 			creator.FillFactor = 0;
@@ -51,7 +51,7 @@ namespace Cgol.Tests.AppTests.GameFactoryTests
 		[InlineData(10, 7)]
 		public void all_cells_are_initially_alive_because_of_fill_factor_1(int width, int height)
 		{
-			var creator = new GameFactory();
+			var creator = new GameFactory(null);
 			creator.Width = width;
 			creator.Height = height;
 			creator.FillFactor = 1;

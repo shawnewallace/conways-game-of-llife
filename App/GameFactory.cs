@@ -9,6 +9,12 @@ namespace Cgol.App
 		public int Width { get; set; }
 		public int Height { get; set; }
 		public double FillFactor { get; set; }
+		private ITicker Ticker { get; }
+
+		public GameFactory(ITicker ticker)
+		{
+			Ticker = ticker;
+		}
 
 		public IGame Execute()
 		{
@@ -28,7 +34,7 @@ namespace Cgol.App
 				}
 			}
 
-			return new Game(newBoard);
+			return new Game(Ticker, newBoard);
 		}
 	}
 }
