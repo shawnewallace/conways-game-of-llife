@@ -37,8 +37,8 @@ namespace Cgol.Con
       logger.LogDebug("Starting Applicaiton");
 
       var creator = serviceProvider.GetService<IGameFactory>();
-      creator.Width = 40;
-      creator.Height = 40;
+      creator.Width = 10;
+      creator.Height = 10;
       creator.FillFactor = .5;
       //creator.Generator = BoardGenerator.Random;
 

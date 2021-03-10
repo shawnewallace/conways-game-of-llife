@@ -2,7 +2,7 @@ using System;
 
 namespace Cgol.Api
 {
-    public class WeatherForecast
+	public class WeatherForecast
     {
         public DateTime Date { get; set; }
 
@@ -12,11 +12,4 @@ namespace Cgol.Api
 
         public string Summary { get; set; }
     }
-
-		public class CreateGameModel
-		{
-			public int Width {get;set;}
-			public int Height {get;set;}
-			public double FillFactor {get;set;}
-		}
 }
