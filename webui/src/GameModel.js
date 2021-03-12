@@ -1,9 +1,9 @@
 class GameModel {
-	constructor(props) {
-		this.width = props.width;
-		this.height = props.height;
-		this.fillFactor = props.fillFactor;
-		this.isToroidal = props.isToroidal;
+	constructor(width, height, fillFactor, isToroidal) {
+		this.width = width;
+		this.height = height;
+		this.fillFactor = fillFactor;
+		this.isToroidal = isToroidal;
 	}
 }
 
