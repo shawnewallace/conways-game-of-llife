@@ -47,7 +47,7 @@ class GameParameters extends React.Component {
 					placeholder="X"
 					min="3" 
 					max="100"
-					defaultValue={this.props.width}
+					value={this.state.width}
 					onChange={this.handleChange}>
 				</input>&nbsp;
 
@@ -58,7 +58,7 @@ class GameParameters extends React.Component {
 					placeholder="Y"
 					min="3"
 					max="100"
-					defaultValue={this.props.height}
+					defaultValue={this.state.height}
 					onChange={this.handleChange}>
 				</input><br />
 				
@@ -70,14 +70,14 @@ class GameParameters extends React.Component {
 					min="0"
 					max="1"
 					step="0.1"
-					defaultValue={this.props.fillFactor}
+					defaultValue={this.state.fillFactor}
 					onChange={this.handleChange}>
 				</input><br />
 				
 				<input
 					name="isToroidal"
 					type="checkbox"
-					defaultChecked={this.props.isToroidal}
+					defaultChecked={this.state.isToroidal}
 					onChange={this.handleIsToroidalChange}>
 				</input>Toroidal<br />
 				
@@ -87,7 +87,5 @@ class GameParameters extends React.Component {
 		);
 	}
 }
-
-
 
 export default GameParameters;

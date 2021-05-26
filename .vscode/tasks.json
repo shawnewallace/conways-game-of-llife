@@ -25,7 +25,7 @@
 				"type": "process",
 				"problemMatcher": "$msCompile",
 				"options": {
-					"cwd": "${workspaceFolder}/Fn"
+					"cwd": "${workspaceFolder}/func"
 				}
 			},
 			{
@@ -44,7 +44,7 @@
 				},
 				"problemMatcher": "$msCompile",
 				"options": {
-					"cwd": "${workspaceFolder}/Fn"
+					"cwd": "${workspaceFolder}/func"
 				}
 			},
 			{
@@ -60,7 +60,7 @@
 				"type": "process",
 				"problemMatcher": "$msCompile",
 				"options": {
-					"cwd": "${workspaceFolder}/Fn"
+					"cwd": "${workspaceFolder}/func"
 				}
 			},
 			{
@@ -77,14 +77,14 @@
 				"dependsOn": "clean release",
 				"problemMatcher": "$msCompile",
 				"options": {
-					"cwd": "${workspaceFolder}/Fn"
+					"cwd": "${workspaceFolder}/func"
 				}
 			},
 			{
 				"type": "func",
 				"dependsOn": "build",
 				"options": {
-					"cwd": "${workspaceFolder}/Fn/bin/Debug/net5.0"
+					"cwd": "${workspaceFolder}/func/bin/Debug/net5.0"
 				},
 				"command": "host start",
 				"isBackground": true,
