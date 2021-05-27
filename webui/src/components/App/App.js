@@ -1,9 +1,10 @@
+/* eslint-disable indent */
 import './App.css';
-import GameHeader from '../GameHeader/GameHeader'
-import GameParameters from '../GameParameters/GameParameters'
-import GameBoard from '../GameBoard/GameBoard'
-import GameController from '../GameController/GameController'
-import GameModel from '../../GameModel'
+import GameHeader from '../GameHeader/GameHeader';
+import GameParameters from '../GameParameters/GameParameters';
+// import GameBoard from '../GameBoard/GameBoard'
+// import GameController from '../GameController/GameController'
+// import GameModel from '../../GameModel'
 import React from 'react';
 
 class App extends React.Component {
@@ -23,7 +24,7 @@ class App extends React.Component {
 			height: this.defaultHeight, 
 			fillFactor: this.defaultFillFactor,
 			isTorpidal: this.defaultIsToroidal
-		}
+		};
 
 		this.initializeGameParams();
 	}
@@ -42,8 +43,7 @@ class App extends React.Component {
 	}
 
 	resetGame() {
-		alert("APP -> reset game");
-
+		alert('APP -> reset game');
 		this.initializeGameParams();
 	}
 

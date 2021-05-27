@@ -20,6 +20,11 @@ class GameParameters extends React.Component {
 	}
 
 	handleResetGame(e) {
+		this.setState({ width: this.props.width });
+		this.setState({ height: this.props.height });
+		this.setState({ fillFactor: this.props.fillFactor });
+		this.setState({ isToroidal: this.props.isToroidal });
+
 		this.props.onResetGame();
 	}
 
@@ -58,7 +63,7 @@ class GameParameters extends React.Component {
 					placeholder="Y"
 					min="3"
 					max="100"
-					defaultValue={this.state.height}
+					value={this.state.height}
 					onChange={this.handleChange}>
 				</input><br />
 				
@@ -70,14 +75,14 @@ class GameParameters extends React.Component {
 					min="0"
 					max="1"
 					step="0.1"
-					defaultValue={this.state.fillFactor}
+					value={this.state.fillFactor}
 					onChange={this.handleChange}>
 				</input><br />
 				
 				<input
 					name="isToroidal"
 					type="checkbox"
-					defaultChecked={this.state.isToroidal}
+					checked={this.state.isToroidal}
 					onChange={this.handleIsToroidalChange}>
 				</input>Toroidal<br />
 				
