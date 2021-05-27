@@ -2,10 +2,11 @@
 import './App.css';
 import GameHeader from '../GameHeader/GameHeader';
 import GameParameters from '../GameParameters/GameParameters';
-// import GameBoard from '../GameBoard/GameBoard'
-// import GameController from '../GameController/GameController'
+import GameBoard from '../GameBoard/GameBoard';
+import GameController from '../GameController/GameController';
 // import GameModel from '../../GameModel'
 import React from 'react';
+import { findAllByTestId } from '@testing-library/dom';
 
 class App extends React.Component {
 	constructor(props) {
@@ -15,15 +16,22 @@ class App extends React.Component {
 		this.defaultHeight = 4;
 		this.defaultFillFactor = 0.3;
 		this.defaultIsToroidal = false;
+		this.defaultAutoTick = false;
 
 		this.startGame = this.startGame.bind(this);
 		this.resetGame = this.resetGame.bind(this);
+		this.tick = this.tick.bind(this);
+		this.toggleAutoTick = this.toggleAutoTick.bind(this);
 
 		this.state = {
 			width: this.defaultWidth,
-			height: this.defaultHeight, 
+			height: this.defaultHeight,
 			fillFactor: this.defaultFillFactor,
-			isTorpidal: this.defaultIsToroidal
+			isTorpidal: this.defaultIsToroidal,
+			isInGame: false,
+			numTicks: 0,
+			population: 0,
+			autoTick: this.defaultAutoTick,
 		};
 
 		this.initializeGameParams();
@@ -39,12 +47,29 @@ class App extends React.Component {
 	}
 
 	startGame(width, height, fillFactor, isTorpoidal) {
-		alert(`APP -> start game(${width}, ${height}, ${fillFactor}, ${isTorpoidal} )`);
+		console.log(`APP -> start game(${width}, ${height}, ${fillFactor}, ${isTorpoidal} )`);
+		this.setState({ isInGame: true });
 	}
 
 	resetGame() {
-		alert('APP -> reset game');
-		this.initializeGameParams();
+		console.log('APP -> reset game');
+		this.setState({ isInGame: false });
+		this.setState({ numTicks: 0 });
+		this.setState({ autoTick: this.defaultAutoTick });
+	}
+
+	toggleAutoTick() {
+		console.log(`Toggle Autotick - ${this.state.numTicks}`);
+		this.setState(prevState => {
+			return { autoTick: !prevState.autoTick }
+		});
+	}
+
+	tick() {
+		console.log(`TICK - ${this.state.numTicks}`);
+		this.setState(prevState => {
+			return { numTicks: prevState.numTicks + 1 }
+		});
 	}
 
 	render() {
@@ -59,24 +84,35 @@ class App extends React.Component {
 				<div className="Header box">
 					<GameHeader></GameHeader>
 				</div>
+				{!this.state.isInGame &&
+					<div className="Parameters box">
+						<GameParameters
+							width={width}
+							height={height}
+							fillFactor={fillFactor}
+							isToroidal={isToroidal}
+							onStartGame={this.startGame}
+							onResetGame={this.resetGame}></GameParameters>
+					</div>
+				}
+				{this.state.isInGame &&
+					<div className="Controller box">
+						<GameController
+							autoTick={this.state.autoTick}
+							numTicks={this.state.numTicks}
+							population={this.state.population}
+							onToggleAutotick={this.toggleAutoTick}
+							onTick={this.tick}
+							onResetGame={this.resetGame}></GameController>
+					</div>
+				}
 
-				<div className="Parameters box">
-					<GameParameters
-						width={width}
-						height={height}
-						fillFactor={fillFactor}
-						isToroidal={isToroidal}
-						onStartGame={this.startGame}
-						onResetGame={this.resetGame}></GameParameters>
-				</div>
+				{this.state.isInGame &&
+					<div className="Board box">
+						<GameBoard></GameBoard>
+					</div>
+				}
 
-				{/* <div className="Controller box">
-					<GameController></GameController>
-				</div>
-
-				<div className="Board box">
-					<GameBoard></GameBoard>
-				</div> */}
 
 			</div>
 		);
