@@ -4,7 +4,6 @@ import GameHeader from '../GameHeader/GameHeader';
 import GameParameters from '../GameParameters/GameParameters';
 import GameBoard from '../GameBoard/GameBoard';
 import GameController from '../GameController/GameController';
-// import GameModel from '../../GameModel'
 import React from 'react';
 import { findAllByTestId } from '@testing-library/dom';
 
@@ -53,6 +52,7 @@ class App extends React.Component {
 
 	resetGame() {
 		console.log('APP -> reset game');
+		clearInterval(this.autoTickTimer);
 		this.setState({ isInGame: false });
 		this.setState({ numTicks: 0 });
 		this.setState({ autoTick: this.defaultAutoTick });
@@ -88,13 +88,13 @@ class App extends React.Component {
 		const isToroidal = this.state.isTorpidal;
 
 		return (
-			<div className="App">
+			<div className="world">
 
-				<div className="Header box">
+				<div className="header">
 					<GameHeader></GameHeader>
 				</div>
 				{!this.state.isInGame &&
-					<div className="Parameters box">
+					<div className="parameters">
 						<GameParameters
 							width={width}
 							height={height}
@@ -105,7 +105,7 @@ class App extends React.Component {
 					</div>
 				}
 				{this.state.isInGame &&
-					<div className="Controller box">
+					<div className="controller">
 						<GameController
 							autoTick={this.state.autoTick}
 							numTicks={this.state.numTicks}
@@ -115,14 +115,11 @@ class App extends React.Component {
 							onResetGame={this.resetGame}></GameController>
 					</div>
 				}
-
 				{this.state.isInGame &&
-					<div className="Board box">
+					<div className="board">
 						<GameBoard></GameBoard>
 					</div>
 				}
-
-
 			</div>
 		);
 	}

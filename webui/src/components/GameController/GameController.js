@@ -3,14 +3,13 @@ function GameController(props) {
 		<div>
 			<span>Game Controller here!</span><br />
 
-			{/* <input
+			<input
 				name="autoTick"
 				type="checkbox"
 				defaultChecked={props.autoTick}
 				onChange={props.onToggleAutoTick}>
-			</input>Auto-tick<br /> */}
+			</input>Auto-tick<br />
 
-			<button type="button" className="btn btn-light" onClick={props.onToggleAutoTick}>Toggle Auto-tick</button>
 			<button type="button" className="btn btn-light" onClick={props.onTick}>Tick</button>
 			<button type="button" className="btn btn-light" onClick={props.onResetGame}>Reset</button>
 
