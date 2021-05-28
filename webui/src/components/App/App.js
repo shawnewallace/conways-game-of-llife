@@ -59,9 +59,18 @@ class App extends React.Component {
 	}
 
 	toggleAutoTick() {
-		console.log(`Toggle Autotick - ${this.state.numTicks}`);
+		console.log(`Toggle Autotick ${!this.state.autoTick}`);
 		this.setState(prevState => {
 			return { autoTick: !prevState.autoTick }
+		}, () => {
+			if (this.state.autoTick) {
+				this.autoTickTimer = setInterval(() => {
+					this.tick();
+				}, 1000);
+			}
+			else {
+				clearInterval(this.autoTickTimer);
+			}
 		});
 	}
 
@@ -101,7 +110,7 @@ class App extends React.Component {
 							autoTick={this.state.autoTick}
 							numTicks={this.state.numTicks}
 							population={this.state.population}
-							onToggleAutotick={this.toggleAutoTick}
+							onToggleAutoTick={this.toggleAutoTick}
 							onTick={this.tick}
 							onResetGame={this.resetGame}></GameController>
 					</div>
